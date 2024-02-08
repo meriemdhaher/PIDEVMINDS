@@ -22,8 +22,7 @@ public class Administration implements Serializable {
     String label;
     @OneToMany(mappedBy = "administration")
     Set<Evenement> Evenements;
-    @OneToMany(mappedBy = "administration")
-    Set<DocStage> DocStages;
+
 
 
 

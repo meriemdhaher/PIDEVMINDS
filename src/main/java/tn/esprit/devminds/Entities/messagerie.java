@@ -28,4 +28,5 @@ public class messagerie {
     Entreprise entreprise;
     @ManyToOne
     Etudiant etudiant;
+
 }

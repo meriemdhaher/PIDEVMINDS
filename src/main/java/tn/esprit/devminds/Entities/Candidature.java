@@ -25,6 +25,4 @@ public class Candidature implements Serializable {
     String email;
     @ManyToOne
     Etudiant etudiant;
-    @ManyToMany(mappedBy = "candidatures",cascade = CascadeType.ALL)
-    Set<Entreprise> entreprises;
 }

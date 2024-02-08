@@ -29,8 +29,7 @@ public class DocStage implements Serializable {
     Entreprise entreprise;
     @OneToOne
     Etudiant etudiant;
-    @ManyToOne
-    Administration administration;
+
 
 
 
