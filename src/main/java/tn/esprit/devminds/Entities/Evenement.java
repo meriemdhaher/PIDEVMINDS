@@ -27,6 +27,12 @@ public class Evenement implements Serializable {
     Administration administration;
     @ManyToMany(mappedBy = "evenement",cascade = CascadeType.ALL)
     Set<Etudiant> etudiants;
+    // Ajoutez ces deux nouveaux champs
+    @Column(columnDefinition = "int default 0") // Définit une valeur par défaut de 0 pour le champ
+    private int likes;
+
+    @Column(columnDefinition = "int default 0") // Définit une valeur par défaut de 0 pour le champ
+    private int dislikes;
 
 
 
