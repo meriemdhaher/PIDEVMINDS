@@ -13,6 +13,12 @@ import { AsideComponent } from './layouts/aside/aside.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CategoryListComponent } from './pages/category/category-list/category-list.component';
 import { NewCategoryComponent } from './pages/category/new-category/new-category.component';
+import { CandidatureComponent } from './pages/candidature/candidature.component';
+import { CommunicationComponent } from './pages/communication/communication.component';
+import { EntrepriseComponent } from './pages/entreprise/entreprise.component';
+import { EvenementComponent } from './pages/evenement/evenement.component';
+import { StageComponent } from './pages/stage/stage.component';
+import { UserprofilComponent } from './pages/userprofil/userprofil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +29,12 @@ import { NewCategoryComponent } from './pages/category/new-category/new-category
     DashboardComponent,
     CategoryListComponent,
     NewCategoryComponent,
+    CandidatureComponent,
+    CommunicationComponent,
+    EntrepriseComponent,
+    EvenementComponent,
+    StageComponent,
+    UserprofilComponent,
   ],
   imports: [
     BrowserModule,
