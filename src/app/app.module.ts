@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
@@ -48,12 +48,13 @@ import { DemandeStageComponent } from './demande-stage/demande-stage.component';
     
   ],
   imports: [
-    NgbModal,
+    
     BrowserModule,
     AppRoutingModule,
     FormsModule,  
     ReactiveFormsModule,  
     HttpClientModule, 
+    
     // DataTablesModule   
     
   ],

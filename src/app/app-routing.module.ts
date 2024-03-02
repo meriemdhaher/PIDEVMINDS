@@ -13,6 +13,7 @@ import { EtudiantNewComponent } from './pages/etudiant/etudiant-new/etudiant-new
 import { EtudiantUpdateComponent } from './pages/etudiant/etudiant-update/etudiant-update.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { YourInterceptor } from '../app/your-interceptor';
+import { TimelineComponent } from './timeline-component/timeline-component.component';
 
 const routes: Routes = [
   { path:'dashboard', component: DashboardComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'view-etudiant', pathMatch: 'full' }, 
   { path:'etudiant-new', component: EtudiantNewComponent },
   { path:'etudiant-update/:id', component: EtudiantUpdateComponent },
+  { path: 'timeline', component: TimelineComponent },
 ];
 
 @NgModule({
