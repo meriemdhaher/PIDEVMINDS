@@ -6,9 +6,13 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EntrepriseComponent } from './pages/entreprise/entreprise.component'; 
 import { EvenementComponent } from './pages/evenement/evenement.component'; 
 import { CommunicationComponent } from './pages/communication/communication.component'; 
-import { StageComponent } from './pages/stage/stage.component';
 import { CandidatureComponent } from './pages/candidature/candidature.component'; 
 import { UserprofilComponent } from './pages/userprofil/userprofil.component';
+import { EtudiantListComponent } from './pages/etudiant/etudiant-list/etudiant-list.component';
+import { EtudiantNewComponent } from './pages/etudiant/etudiant-new/etudiant-new.component';
+import { EtudiantUpdateComponent } from './pages/etudiant/etudiant-update/etudiant-update.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { YourInterceptor } from '../app/your-interceptor';
 
 const routes: Routes = [
   { path:'dashboard', component: DashboardComponent },
@@ -18,14 +22,23 @@ const routes: Routes = [
   {path:'entreprise', component:EntrepriseComponent},
   {path:'evenement', component:EvenementComponent},
   {path:'communication',component:CommunicationComponent},
-  {path:'stage',component:StageComponent},
   {path:'candidature',component:CandidatureComponent},
-  {path:'userprofil',component:UserprofilComponent}
-
+  {path:'userprofil',component:UserprofilComponent},
+  { path:'etudiant', component:EtudiantListComponent },
+  { path: '', redirectTo: 'view-etudiant', pathMatch: 'full' }, 
+  { path:'etudiant-new', component: EtudiantNewComponent },
+  { path:'etudiant-update/:id', component: EtudiantUpdateComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: YourInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class AppRoutingModule { }

@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title" style="font-size: xx-large;">
+            list etudiant
+          </h3> &nbsp;
+          <a routerLink="/etudiant-new"><button class="btn btn-success pull-right" >Add New Etudiant</button></a>
+  
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Cin</th>
+                <th>Numero</th>
+                <th>Email</th>
+                <th>Evenement</th>
+                <th>docStage</th>
+                <th>Candidature</th>
+                <th>Messagerie</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let etudiant of etudiants | async">
+                <td>{{etudiant.id}}</td>
+                <td>{{etudiant.nom}}</td>
+                <td>{{ etudiant.prenom }}</td>
+                <td>{{ etudiant.cin }}</td>
+                <td>{{ etudiant.numero }}</td>
+                <td>{{ etudiant.email }}</td>
+                <td>{{ etudiant.evenement }}</td>
+                <td>{{ etudiant.docStage }}</td>
+                <td>{{ etudiant.candidatures }}</td>
+                <td>{{ etudiant.messageries }}</td>
+                <td>
+                  <a routerLink="/etudiant-update/{{ etudiant.id }}">
+                    <button class="btn btn-info">Update Etudiant</button>
+                  </a>
+                  <a (click)="deleteEtudiant(etudiant.id)">
+                    <button class="btn btn-danger">Delete Etudiant</button>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
+  

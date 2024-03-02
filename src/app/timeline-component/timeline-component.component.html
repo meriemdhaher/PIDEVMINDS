@@ -1,0 +1,7 @@
+<div class="timeline">
+    <div *ngFor="let event of events" class="timeline-event">
+      <div class="event-date">{{ event.date }}</div>
+      <div class="event-title">{{ event.title }}</div>
+      <button (click)="openDemandeStagePopup(event)">Demande de Stage</button>
+    </div>
+  </div>

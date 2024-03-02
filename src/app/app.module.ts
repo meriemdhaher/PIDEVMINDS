@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
@@ -17,8 +17,14 @@ import { CandidatureComponent } from './pages/candidature/candidature.component'
 import { CommunicationComponent } from './pages/communication/communication.component';
 import { EntrepriseComponent } from './pages/entreprise/entreprise.component';
 import { EvenementComponent } from './pages/evenement/evenement.component';
-import { StageComponent } from './pages/stage/stage.component';
 import { UserprofilComponent } from './pages/userprofil/userprofil.component';
+import { EtudiantListComponent } from './pages/etudiant/etudiant-list/etudiant-list.component';
+import { EtudiantNewComponent } from './pages/etudiant/etudiant-new/etudiant-new.component';
+import { EtudiantUpdateComponent } from './pages/etudiant/etudiant-update/etudiant-update.component';
+import { TimelineComponent } from './timeline-component/timeline-component.component';
+import { DemandeStageComponent } from './demande-stage/demande-stage.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,10 +39,16 @@ import { UserprofilComponent } from './pages/userprofil/userprofil.component';
     CommunicationComponent,
     EntrepriseComponent,
     EvenementComponent,
-    StageComponent,
     UserprofilComponent,
+    EtudiantListComponent,
+    EtudiantNewComponent,
+    EtudiantUpdateComponent,
+    TimelineComponent,
+    DemandeStageComponent,
+    
   ],
   imports: [
+    NgbModal,
     BrowserModule,
     AppRoutingModule,
     FormsModule,  
