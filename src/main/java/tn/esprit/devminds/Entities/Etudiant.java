@@ -1,5 +1,6 @@
 package tn.esprit.devminds.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,11 +15,14 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "etudiant")
 public class Etudiant implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @JsonIgnore
     Long idEtudiant;
     int cin;
+    @Column(name = "nom")
     String nom;
     String prenom;
     int numero;
@@ -33,4 +37,11 @@ public class Etudiant implements Serializable {
     Set<messagerie> messageries;
 
 
+    public Long getId() {
+        return idEtudiant;
+    }
+
+    public void setId(Long id) {
+        this.idEtudiant = id;
+    }
 }
