@@ -1,15 +1,16 @@
+// etudiant-update.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EtudiantService } from 'src/app/etudiant.service';
 import { Etudiant } from 'src/app/etudiant';
+import { tap, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-etudiant-update',
   templateUrl: './etudiant-update.component.html',
   styleUrls: ['./etudiant-update.component.css']
 })
-// ... existing imports ...
-
 export class EtudiantUpdateComponent implements OnInit {
   id: any;
   etudiant: Etudiant;
@@ -28,9 +29,15 @@ export class EtudiantUpdateComponent implements OnInit {
     this.etudiantService.getEtudiant(this.id).subscribe(
       (data) => {
         this.etudiant = data;
+        this.updateEmail(); // Update email initially
       },
       (error) => console.log(error)
     );
+  }
+
+  private updateEmail() {
+    // Generate email based on nom and prenom
+    this.etudiant.email = `${this.etudiant.nom.toLowerCase()}.${this.etudiant.prenom.toLowerCase()}@example.com`;
   }
 
   onSubmit() {
@@ -40,21 +47,21 @@ export class EtudiantUpdateComponent implements OnInit {
   
   updateEtudiant() {
     console.log('Updating etudiant:', this.etudiant);
-    this.etudiantService.updateEtudiant(this.id, this.etudiant).subscribe(
-      () => {
-        console.log('Etudiant updated successfully');
-        this.gotoListEtudiant();
-      },
-      (error) => {
-        console.log('Error updating etudiant:', error);
-      }
-    );
+    this.etudiantService.updateEtudiant(this.id, this.etudiant)
+      .pipe(
+        switchMap(() => this.etudiantService.getEtudiant(this.id)), // Fetch updated etudiant
+        tap((updatedEtudiant) => {
+          console.log('Etudiant updated successfully');
+          this.etudiant = updatedEtudiant; // Update the component's etudiant with the latest data
+          this.updateEmail(); // Update email after modification
+          this.router.navigate(['/etudiant']);
+        })
+      )
+      .subscribe(
+        () => {},
+        (error) => {
+          console.log('Error updating etudiant:', error);
+        }
+      );
   }
-  
-  gotoListEtudiant() {
-    console.log('Navigating to etudiant list');
-    this.router.navigate(['/etudiant']);
-  }
-  
 }
-

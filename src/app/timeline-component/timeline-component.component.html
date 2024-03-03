@@ -1,10 +1,10 @@
+<h3 style="text-align: center;font-family: fantasy;
+font-size: xxx-large;">Timeline</h3>
 <div class="timeline">
     <div *ngFor="let event of events" class="timeline-event">
-      <div class="event-date">{{ event.date }}</div>
-      <div class="event-title">{{ event.title }}</div>
-      <button (click)="openDemandeStagePopup(event)">Demande de Stage</button>
+      
+      <div class="event-title" style="font-size: large;font-family: cursive;">{{ event.title }}</div>
+      <button (click)="openDemandeStagePopup()">Demande de Stage</button>
     </div>
   </div>
-  <div id="modal-container" ngbModalContainer></div>
-<div class="modal fade" id="demandeStageModal" tabindex="-1" role="dialog" aria-labelledby="modal-basic-title" aria-hidden="true">
-</div>
+  

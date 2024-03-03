@@ -1,38 +1,61 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Etudiant } from 'src/app/etudiant';
 import { EtudiantService } from 'src/app/etudiant.service';
+import { switchMap, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-etudiant-list',
   templateUrl: './etudiant-list.component.html',
   styleUrls: ['./etudiant-list.component.css']
 })
-export class EtudiantListComponent implements OnInit{
-  etudiants: Observable<Etudiant[]>;
+export class EtudiantListComponent implements OnInit {
+  etudiants: Etudiant[]; // Utilisez un tableau pour stocker les données
 
-  constructor(private etudiantService: EtudiantService,
-    private router: Router) {}
+  private destroy$: Subject<void> = new Subject<void>();
+
+  constructor(
+    private etudiantService: EtudiantService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.reloadData();
   }
 
-  reloadData() {
-    this.etudiants = this.etudiantService.getEtudiantList();
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
+
+  reloadData() {
+    this.etudiantService.getEtudiantList().pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (etudiants) => {
+          this.etudiants = etudiants; // Affectez à la variable tableau
+        },
+        (error) => {
+          console.error('Error loading etudiants:', error);
+        }
+      );
+  }
+
   etudiantDetails(etudiantId: number): void {
-    // Logique pour afficher les détails de l'étudiant
     this.router.navigate(['/details', etudiantId]);
   }
+
   deleteEtudiant(etudiantId: number): void {
-    this.etudiantService.deleteEtudiant(etudiantId).subscribe(
-      () => {
+    this.etudiantService.deleteEtudiant(etudiantId).pipe(
+      switchMap(() => this.etudiantService.getEtudiantList())
+    ).subscribe(
+      (etudiants) => {
+        this.etudiants = etudiants; // Affectez à la variable tableau
         console.log('Etudiant deleted successfully');
-        this.reloadData(); // Rafraîchit la liste après la suppression
       },
-      (error) => console.log(error)
+      (error) => {
+        console.error('Error deleting etudiant:', error);
+      }
     );
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
@@ -23,6 +23,7 @@ import { EtudiantNewComponent } from './pages/etudiant/etudiant-new/etudiant-new
 import { EtudiantUpdateComponent } from './pages/etudiant/etudiant-update/etudiant-update.component';
 import { TimelineComponent } from './timeline-component/timeline-component.component';
 import { DemandeStageComponent } from './demande-stage/demande-stage.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -48,12 +49,12 @@ import { DemandeStageComponent } from './demande-stage/demande-stage.component';
     
   ],
   imports: [
-    
+    MatDialogModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,  
     ReactiveFormsModule,  
-    HttpClientModule, 
+    HttpClientModule, BrowserAnimationsModule, 
     
     // DataTablesModule   
     

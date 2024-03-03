@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+// demande-stage.component.ts
+
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -7,27 +10,33 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./demande-stage.component.css']
 })
 export class DemandeStageComponent {
-  @Input() studentInfo: any;
+  cin: number = 0;
+  constructor(private dialog: MatDialog, private httpClient: HttpClient) { }
 
-  constructor(private modalService: NgbModal, private httpClient: HttpClient) { }
+  submitDemandeStage() {
+    // Envoi du CIN au serveur pour générer le PDF
+    this.httpClient.get(`http://localhost:8089/demande-stage/pdf/${this.cin}`, { responseType: 'blob' })
+    .subscribe(
+      response => {
+        console.log('Response received from server:', response);
+  
 
-  open(content: NgbModal) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
-  }
+      // Crée un objet blob avec la réponse
+      const blob = new Blob([response], { type: 'application/pdf' });
 
-  generateAndShowPdf() {
-    // Vérifiez si les informations de l'étudiant existent
-    if (this.studentInfo) {
-      // Générez le PDF avec les informations de l'étudiant
-      const pdfContent = `ID: ${this.studentInfo.Id}\nNom: ${this.studentInfo.Nom}\nPrénom: ${this.studentInfo.Prenom}\nCIN: ${this.studentInfo.Cin}\nNuméro: ${this.studentInfo.Numero}\nEmail: ${this.studentInfo.Email}\nEvenement: ${this.studentInfo.Evenement}`;
+      // Crée un objet URL pour le blob, puis ouvre une nouvelle fenêtre
+      const fileUrl = URL.createObjectURL(blob);
+      window.open(fileUrl);
 
-      // Logique pour générer et afficher le PDF
-      console.log('PDF Content:', pdfContent);
-
-      // Vous pouvez utiliser une bibliothèque ou un service pour générer le PDF ici
-      // Par exemple, jspdf, pdfmake, etc.
-    } else {
-      console.log('Les informations de l\'étudiant n\'existent pas.');
+      // Une fois le PDF généré, fermez le popup
+      this.dialog.closeAll();
+    },
+    error => {
+      // Gérez les erreurs ici
+      console.error('Error generating PDF', error);
     }
+  );
+
+  
   }
 }
