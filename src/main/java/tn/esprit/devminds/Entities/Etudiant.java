@@ -46,4 +46,6 @@ public class Etudiant implements Serializable {
     }
 
 
+    public void setDemandeImportee(boolean b) {
+    }
 }

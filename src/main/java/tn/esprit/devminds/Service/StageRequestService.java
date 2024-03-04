@@ -10,7 +10,8 @@ public class StageRequestService {
 
     @Autowired
     private EtudiantService etudiantService;
-
+    @Autowired
+    private PdfStorageService pdfStorageService;
     public Etudiant getEtudiantByCin(Integer cin) {
         return etudiantService.getEtudiantByCin(cin);
     }
@@ -20,6 +21,13 @@ public class StageRequestService {
             throw new IllegalArgumentException("Etudiant not found");
         }
 
-        return PdfGenerator.generateDemandeDeStagePdf(etudiant);
+        byte[] pdfContent = PdfGenerator.generateDemandeDeStagePdf(etudiant);
+
+        // Mettez à jour l'étudiant après la génération du PDF
+        etudiant.setDemandeImportee(true);  // Assurez-vous d'ajuster cela en fonction de votre modèle d'objet
+        etudiantService.updateEtudiant(etudiant);
+
+        pdfStorageService.savePdf(etudiant.getId(), pdfContent);
+        return pdfContent;
     }
 }
