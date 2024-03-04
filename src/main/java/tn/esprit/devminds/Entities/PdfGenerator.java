@@ -21,8 +21,6 @@ public class PdfGenerator {
             document.add(new Paragraph("Cin: " + etudiant.getCin()));
             document.add(new Paragraph("Numero: " + etudiant.getNumero()));
 
-            // Ajoutez d'autres informations spécifiques à la demande de stage ici
-            // Par exemple, document.add(new Paragraph("Champ: " + etudiant.getChamp()));
 
             document.close();
 
