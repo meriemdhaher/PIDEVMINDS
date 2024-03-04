@@ -12,7 +12,6 @@ import { EtudiantListComponent } from './pages/etudiant/etudiant-list/etudiant-l
 import { EtudiantNewComponent } from './pages/etudiant/etudiant-new/etudiant-new.component';
 import { EtudiantUpdateComponent } from './pages/etudiant/etudiant-update/etudiant-update.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { YourInterceptor } from '../app/your-interceptor';
 import { TimelineComponent } from './timeline-component/timeline-component.component';
 
 const routes: Routes = [
@@ -35,12 +34,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: YourInterceptor,
-      multi: true,
-    },
-  ],
+
 })
 export class AppRoutingModule { }

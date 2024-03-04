@@ -24,6 +24,7 @@ import { EtudiantUpdateComponent } from './pages/etudiant/etudiant-update/etudia
 import { TimelineComponent } from './timeline-component/timeline-component.component';
 import { DemandeStageComponent } from './demande-stage/demande-stage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConventionComponent } from './convention/convention.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EtudiantUpdateComponent,
     TimelineComponent,
     DemandeStageComponent,
+    ConventionComponent,
     
   ],
   imports: [
