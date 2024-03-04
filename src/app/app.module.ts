@@ -11,8 +11,6 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AsideComponent } from './layouts/aside/aside.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { CategoryListComponent } from './pages/category/category-list/category-list.component';
-import { NewCategoryComponent } from './pages/category/new-category/new-category.component';
 import { CandidatureComponent } from './pages/candidature/candidature.component';
 import { CommunicationComponent } from './pages/communication/communication.component';
 import { EntrepriseComponent } from './pages/entreprise/entreprise.component';
@@ -35,8 +33,6 @@ import { ConventionComponent } from './convention/convention.component';
     FooterComponent,
     AsideComponent,
     DashboardComponent,
-    CategoryListComponent,
-    NewCategoryComponent,
     CandidatureComponent,
     CommunicationComponent,
     EntrepriseComponent,

@@ -3,6 +3,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
+import { EtudiantService } from '../etudiant.service';
 
 @Component({
   selector: 'app-demande-stage',
@@ -11,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DemandeStageComponent {
   cin: number = 0;
-  constructor(private dialog: MatDialog, private httpClient: HttpClient) { }
+  constructor(private dialog: MatDialog, private httpClient: HttpClient, private etudiantService: EtudiantService) { }
 
   submitDemandeStage() {
     // Envoi du CIN au serveur pour générer le PDF
@@ -27,6 +28,7 @@ export class DemandeStageComponent {
       // Crée un objet URL pour le blob, puis ouvre une nouvelle fenêtre
       const fileUrl = URL.createObjectURL(blob);
       window.open(fileUrl);
+      
 
       // Une fois le PDF généré, fermez le popup
       this.dialog.closeAll();
@@ -36,7 +38,5 @@ export class DemandeStageComponent {
       console.error('Error generating PDF', error);
     }
   );
-
-  
   }
 }
