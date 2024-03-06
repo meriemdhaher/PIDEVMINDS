@@ -8,7 +8,7 @@ import tn.esprit.devminds.Repository.PdfRepository;
 @Service
 public class PdfStorageService {
     @Autowired
-    private PdfRepository pdfRepository; // Vous devrez créer un repository pour manipuler les PDF dans la base de données.
+    private PdfRepository pdfRepository;
 
     public void savePdf(Long etudiantId, byte[] pdfContent) {
         PdfEntity pdfEntity = new PdfEntity();
