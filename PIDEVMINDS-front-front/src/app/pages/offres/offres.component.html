@@ -1,0 +1,22 @@
+<div *ngFor="let offre of offres" class="offre-container">
+    <div class="logo-container">
+        <img [src]="offre.logo" alt="Logo Entreprise">
+    </div>
+    <div class="details-container">
+        <div class="date-container">
+            <i class="far fa-calendar"></i>
+            <span>Date de publication : {{ offre.date }}</span>
+        </div>
+        <div class="title-container">
+            <h3>{{ offre.titre }}</h3>
+        </div>
+        <div class="location-container">
+            <a [href]="'https://www.google.com/maps?q=' + offre.adresse"
+                target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ offre.adresse }}
+            </a>
+        </div>
+        <button class="postuler-btn" (click)="onPostulerMaintenantClick()">Postuler Maintenant</button>
+    </div>
+</div>

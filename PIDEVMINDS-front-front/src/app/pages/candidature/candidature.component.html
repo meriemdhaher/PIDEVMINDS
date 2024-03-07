@@ -1,0 +1,44 @@
+
+<div class="candidature-container">
+  <h2>Liste des Candidatures</h2>
+  <button class="left-button" (click)="ajouterCandidature()">Ajouter Candidature</button>
+  <button class="right-button" (click)="onFavorableSearchChange()">
+    Recherche Favorable
+    <i class="fas fa-check" *ngIf="afficherFavorable"></i>
+  </button>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>CIN</th>
+        <th>Disponibilité</th>
+        <th>Email</th>
+        <th>Image</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let candidature of listeCandidatures">
+        <td>{{ candidature.idCandidature }}</td>
+        <td>{{ candidature.cin }}</td>
+        <td>{{ candidature.disponibilite }}</td>
+        <td>{{ candidature.email }}</td>
+        <td><img [src]="candidature.image" alt="Profile"></td>
+        <td>{{ candidature.nom }}</td>
+        <td>{{ candidature.prenom }}</td>
+        <td>{{ candidature.status }}</td>
+        <td>
+          <button (click)="modifierCandidature(candidature.idCandidature)">
+            <i class="fas fa-edit"></i> Modifier
+          </button>
+          <button (click)="supprimerCandidature(candidature.idCandidature)">
+            <i class="fas fa-trash"></i> Supprimer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

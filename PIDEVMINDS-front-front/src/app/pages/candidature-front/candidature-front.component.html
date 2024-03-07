@@ -1,0 +1,166 @@
+
+<div class="candidature-options">
+  <div class="manual-application">
+    <h3>Postuler Facilement</h3>
+    <p>Choisissez une option pour rensiegner automatiqument vos informations de candidature.</p>
+    <p>Vous pouvez ègalement remplir votre dossier manuellement.</p>
+    <p>Chargez votre CV ou dèposez-le ici (Facultatif)</p>
+    <input type="file" name="cv" accept=".pdf, .doc, .docx"><br>
+    <button onclick="postulerManuellement()">Postuler</button>
+  </div>
+
+  <div class="linkedin-application">
+    <h3>Postuler avec LinkedIn</h3>
+    <button (click)="postulerAvecLinkedIn()">
+      Apply with LinkedIn
+      <i class="fab fa-linkedin"></i>
+    </button>
+  </div>
+
+
+
+<div class="app-candidature-front">
+<div class="timeline">
+  <div class="step" [ngClass]="{'completed': currentStep >= 1}">Étape 1</div>
+  <div class="step" [ngClass]="{'completed': currentStep >= 2}">Étape 2</div>
+  <div class="step" [ngClass]="{'completed': currentStep >= 3}">Étape 3</div>
+</div>
+
+<div class="form-container">
+  <form [formGroup]="candidatureForm" (ngSubmit)="submitForm()">
+    <!-- Étape 1 -->
+    <div *ngIf="currentStep === 1">
+      <h2>Étape 1 : Informations personnelles</h2>
+      <label>Les champs marqués d'une * sont obligatoires.</label>
+      <label for="image" class="profile-image-label">
+          <div class="profile-image-container">
+            <i class="fas fa-user-circle"></i>
+          </div>
+        </label>
+        <input type="file" id="image" name="image" accept="image/*" style="display: none">
+
+        <label for="prenom">Prénom *</label>
+        <input type="text" id="prenom" name="prenom" formControlName="prenom" required>
+        <div *ngIf="isFieldInvalid('prenom')">
+          <span class="error-message">Le prénom est requis.</span>
+        </div>
+      
+        <label for="nom">Nom *</label>
+        <input type="text" id="nom" name="nom" formControlName="nom" required>
+        <div *ngIf="isFieldInvalid('nom')">
+          <span class="error-message">Le nom est requis.</span>
+        </div>
+      
+       
+        <label for="email">E-mail *</label>
+        <input type="email" id="email" name="email" formControlName="email" required>
+        <div *ngIf="isFieldInvalid('email')">
+          <span class="error-message">L'e-mail est requis et doit être valide.</span>
+        </div>
+      
+      
+        <label for="confirmEmail">Confirmer votre e-mail *</label>
+        <input type="email" id="confirmEmail" name="confirmEmail" formControlName="confirmEmail" required>
+        <div *ngIf="isFieldInvalid('confirmEmail')">
+          <span class="error-message">Veuillez confirmer votre e-mail.</span>
+        </div>
+      
+       
+        <label for="address">Adresse *</label>
+        <input type="text" id="address" name="address" formControlName="address" required>
+        <div *ngIf="isFieldInvalid('address')">
+          <span class="error-message">L'adresse est requise.</span>
+        </div>
+      
+        
+        <label for="numTel">Numéro de téléphone *</label>
+        <div class="phone-input">
+          <input type="tel" id="numTel" name="numTel" formControlName="numTel" pattern="[0-9]{8,12}" required>
+
+        </div>
+        <div *ngIf="isFieldInvalid('numTel')">
+          <span class="error-message">Le numéro de téléphone est requis et doit être au format +216123456789.</span>
+        </div>
+      
+      
+
+
+      <button type="button" (click)="nextStep()">Suivant</button>
+    </div>
+
+    <!-- Étape 2 -->
+    <div *ngIf="currentStep === 2">
+      <h2>Étape 2 : Expérience professionnelle</h2>
+      <label>Les champs marqués d'une * sont obligatoires.</label>
+        <label for="titre">Titre *</label>
+        <input type="text" id="titre" name="titre" formControlName="titre" required>
+        <label for="societe">Société *</label>
+        <input type="text" id="societe" name="societe" formControlName="societe" required>
+  
+        <label for="description">Description *</label>
+        <textarea id="description" name="description" formControlName="experienceDescription" required></textarea>
+      
+        <label for="du">Du *</label>
+        <div class="input-group">
+          <input id="du" name="du" class="form-control" formControlName="experienceDu"  required>
+          <span class="input-group-addon">
+            <i class="far fa-calendar-alt"></i>
+          </span>
+        </div>
+        <label for="au">Au *</label>
+        <div class="input-group">
+          <input id="au" name="au" class="form-control" formControlName="experienceAu"   required>
+          <span class="input-group-addon">
+            <i class="far fa-calendar-alt"></i>
+          </span>
+        </div>
+      
+      <button type="button" (click)="prevStep()">Précédent</button>
+      <button type="button" (click)="nextStep()">Suivant</button>
+    </div>
+
+    <!-- Étape 3 -->
+    <div *ngIf="currentStep === 3">
+      <h2>Étape 3 : Formation</h2>
+      <div>
+        <label for="etablissement">Etablissement:</label>
+        <input type="text" id="etablissement" name="etablissement" formControlName="etablissement" required>
+      </div>
+    
+      <div>
+        <label for="specialisation">Spécialisation:</label>
+        <input type="text" id="specialisation" name="specialisation" formControlName="specialisation" required>
+      </div>
+    
+      <div>
+        <label for="niveauEtude">Niveau d'étude:</label>
+        <input type="text" id="niveauEtude" name="niveauEtude" formControlName="niveauEtude" required>
+      </div>
+    
+      <div>
+        <label for="competence">Compétence:</label>
+        <textarea id="competence" name="competence" formControlName="competence" required></textarea>
+      </div>
+      <label for="du">Du *</label>
+        <div class="input-group">
+          <input id="du" name="du" class="form-control" formControlName="formationDu" required>
+          <span class="input-group-addon">
+            <i class="far fa-calendar-alt"></i>
+          </span>
+        </div>
+        <label for="au">Au *</label>
+        <div class="input-group">
+          <input id="au" name="au" class="form-control" formControlName="formationAu"  required>
+          <span class="input-group-addon">
+            <i class="far fa-calendar-alt"></i>
+          </span>
+        </div>
+
+      <button type="button" (click)="prevStep()">Précédent</button>
+      <button type="button" id="submitButton" (click)="submitForm()">Soumettre</button>
+
+    </div>
+  </form>
+</div>
+
+</div>  
