@@ -23,6 +23,7 @@ import { TimelineComponent } from './timeline-component/timeline-component.compo
 import { DemandeStageComponent } from './demande-stage/demande-stage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConventionComponent } from './convention/convention.component';
+import { ConfirmationdialogComponent } from './confirmationdialog/confirmationdialog.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { ConventionComponent } from './convention/convention.component';
     TimelineComponent,
     DemandeStageComponent,
     ConventionComponent,
+    ConfirmationdialogComponent,
     
   ],
   imports: [

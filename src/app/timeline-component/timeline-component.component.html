@@ -1,12 +1,10 @@
+<!-- timeline-component.component.html -->
 <h3 style="text-align: center; font-family: fantasy; font-size: xxx-large;">Timeline</h3>
 <div class="timeline">
   <div *ngFor="let event of events" class="timeline-event">
-    <div class="event-title" style="font-size: large; font-family: cursive;">{{ event.title }}</div>
-    <button *ngIf="!demandeStageStepClosed" (click)="openDemandeStagePopup()">Demande de Stage</button>
-    <div *ngIf="demandeStageStepClosed && !conventionStepOpened">
-      <!-- Display content for the closed "Demande de Stage" step -->
-      Convention Step Content
-    </div>
-    <!-- Add more conditions for other steps as needed -->
+    <button 
+      [ngStyle]="{'background-color': isClosed(event) ? 'red' : 'inherit'}"
+      [disabled]="isClosed(event)"
+      (click)="openPopup(event)">{{ event.title }}</button>
   </div>
 </div>

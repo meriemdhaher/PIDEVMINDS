@@ -10,6 +10,7 @@ import { EtudiantListComponent } from './pages/etudiant/etudiant-list/etudiant-l
 import { EtudiantNewComponent } from './pages/etudiant/etudiant-new/etudiant-new.component';
 import { EtudiantUpdateComponent } from './pages/etudiant/etudiant-update/etudiant-update.component';
 import { TimelineComponent } from './timeline-component/timeline-component.component';
+import { ConventionComponent } from './convention/convention.component';
 
 const routes: Routes = [
   { path:'dashboard', component: DashboardComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path:'etudiant-new', component: EtudiantNewComponent },
   { path:'etudiant-update/:id', component: EtudiantUpdateComponent },
   { path: 'timeline', component: TimelineComponent },
+  {path:'convention', component: ConventionComponent}
 ];
 
 @NgModule({

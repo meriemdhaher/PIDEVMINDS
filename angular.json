@@ -28,7 +28,11 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery-sparkline/jquery.sparkline.min.js",
+    "./node_modules/jqvmap/dist/jquery.vmap.min.js",
+    "./node_modules/jqvmap/dist/maps/jquery.vmap.world.js" 
+            ]
           },
           "configurations": {
             "production": {
@@ -91,7 +95,9 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["./node_modules/jquery-sparkline/jquery.sparkline.min.js",
+            "./node_modules/jqvmap/dist/jquery.vmap.min.js",
+            "./node_modules/jqvmap/dist/maps/jquery.vmap.world.js" ]
           }
         }
       }
