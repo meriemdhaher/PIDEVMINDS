@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ConventionService } from '../convention.service';
 import { DialogService } from '../dialog.service';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import { NotificationService } from '../notification.service';
 @Component({
   selector: 'app-convention',
   templateUrl: './convention.component.html',
@@ -15,6 +15,7 @@ export class ConventionComponent {
   nomEntreprise: string = '';
   periodeStage: string = '';
   confirmationDetails: {
+    cin:number,
     nom: string,
     prenom: string,
     nomEntreprise: string,
@@ -24,7 +25,8 @@ export class ConventionComponent {
 
   constructor(
     private conventionService: ConventionService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private notificationService: NotificationService 
   ) {}
 
   submitForm(): void {
@@ -50,13 +52,16 @@ export class ConventionComponent {
             prenom: response.prenom,
             nomEntreprise: response.nomEntreprise,
             periodeStage: response.periodeStage,
+            cin: response.cin,
             // Ajoutez d'autres champs si nécessaire
+            
           };
   
           console.log('Confirmation details:', this.confirmationDetails);
   
           // Afficher la boîte de dialogue modale avec les détails
           this.dialogService.openConfirmationDialog(this.confirmationDetails);
+          this.showConventionNotification(response.nom);
         } else {
           console.error('La réponse du serveur ne contient pas les détails attendus.');
         }
@@ -69,5 +74,8 @@ export class ConventionComponent {
         }
       }
     );
+  }
+  private showConventionNotification(nom: string): void {
+    this.notificationService.showSuccessNotification(`Convention générée pour ${nom}`);
   }
 }

@@ -1,4 +1,5 @@
 export class Etudiant {
+  [x: string]: unknown;
   id: number; // Change 'id' to match the property name used in the server-side Etudiant class
   cin: number;
   nom: string;

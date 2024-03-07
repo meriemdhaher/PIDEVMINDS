@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
@@ -55,6 +56,7 @@ import { ConfirmationdialogComponent } from './confirmationdialog/confirmationdi
     FormsModule,  
     ReactiveFormsModule,  
     HttpClientModule, BrowserAnimationsModule, 
+    MatSnackBarModule
     
     // DataTablesModule   
     

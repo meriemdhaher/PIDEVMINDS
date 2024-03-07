@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Etudiant } from 'src/app/etudiant';
 import { EtudiantService } from 'src/app/etudiant.service';
 import { switchMap, takeUntil } from 'rxjs/operators';
+import { NotificationService } from 'src/app/notification.service';
 
 @Component({
   selector: 'app-etudiant-list',
@@ -17,8 +18,10 @@ export class EtudiantListComponent implements OnInit {
 
   constructor(
     private etudiantService: EtudiantService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
+  
 
   ngOnInit() {
     this.reloadData();
@@ -57,5 +60,8 @@ export class EtudiantListComponent implements OnInit {
         console.error('Error deleting etudiant:', error);
       }
     );
+  }
+  showConventionNotification(nomEtudiant: string): void {
+    this.notificationService.showSuccessNotification(`Le formulaire de convention a été généré par ${nomEtudiant}`);
   }
 }

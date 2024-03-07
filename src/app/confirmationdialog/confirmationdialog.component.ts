@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   selector: 'app-confirmationdialog',
   template: `
   <h2>Détails du formulaire</h2>
+  <p>Cin: {{ data.details.cin }}</p>
   <p>Nom: {{ data.details.nom }}</p>
   <p>Prénom: {{ data.details.prenom }}</p>
   <p>Nom de l'entreprise: {{ data.details.nomEntreprise }}</p>
