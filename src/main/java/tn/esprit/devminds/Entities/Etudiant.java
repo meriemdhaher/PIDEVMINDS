@@ -27,6 +27,7 @@ public class Etudiant implements Serializable {
     String prenom;
     int numero;
     String email;
+
     @ManyToMany
     Set<Evenement> evenement;
     @OneToOne(mappedBy = "etudiant")
