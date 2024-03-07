@@ -27,6 +27,14 @@ public class Etudiant implements Serializable {
     String prenom;
     int numero;
     String email;
+    boolean demandeStageEffectuee;
+    @Column(name = "nom_entreprise")
+    private String nomEntreprise;
+
+    @Column(name = "periode_stage")
+    private String periodeStage;
+
+
     @ManyToMany
     Set<Evenement> evenement;
     @OneToOne(mappedBy = "etudiant")
@@ -47,5 +55,28 @@ public class Etudiant implements Serializable {
 
 
     public void setDemandeImportee(boolean b) {
+    }
+
+    public void setDemandeStageEffectuee(boolean demandeStageEffectuee) {
+        this.demandeStageEffectuee = demandeStageEffectuee;
+    }
+
+    public boolean isDemandeStageEffectuee() {
+        return demandeStageEffectuee;
+    }
+    public String getNomEntreprise() {
+        return nomEntreprise;
+    }
+
+    public void setNomEntreprise(String nomEntreprise) {
+        this.nomEntreprise = nomEntreprise;
+    }
+
+    public String getPeriodeStage() {
+        return periodeStage;
+    }
+
+    public void setPeriodeStage(String periodeStage) {
+        this.periodeStage = periodeStage;
     }
 }

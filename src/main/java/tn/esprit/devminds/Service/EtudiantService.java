@@ -5,6 +5,7 @@ import tn.esprit.devminds.Entities.Etudiant;
 import java.util.List;
 
 public interface EtudiantService {
+    void updateDemandeStage(Long id);
 
     Etudiant createEtudiant(Etudiant etudiant);
 

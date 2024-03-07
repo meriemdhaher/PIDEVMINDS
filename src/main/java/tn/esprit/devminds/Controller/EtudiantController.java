@@ -18,7 +18,15 @@ public class EtudiantController {
 
     @Autowired
     private EtudiantService etudiantService;
-
+    @PutMapping("/updateDemandeStage/{id}")
+    public ResponseEntity<?> updateDemandeStage(@PathVariable Long id) {
+        try {
+            etudiantService.updateDemandeStage(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
     @PostMapping("/etudiant")
     public ResponseEntity<Etudiant> createEtudiant(@RequestBody Etudiant etudiant) {
         try {

@@ -21,7 +21,7 @@ public class Entreprise implements Serializable {
     long reference;
     String label;
     String email;
-    String nom;
+    String nomEntreprise;
     String adresse;
     @OneToMany(mappedBy = "entreprise")
     Set<DocStage> docStages;

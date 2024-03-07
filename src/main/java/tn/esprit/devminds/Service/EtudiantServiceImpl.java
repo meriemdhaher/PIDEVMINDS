@@ -1,6 +1,6 @@
 package tn.esprit.devminds.Service;
 
-import jakarta.transaction.Transactional;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.devminds.Entities.Etudiant;
@@ -18,7 +18,14 @@ public class EtudiantServiceImpl implements EtudiantService {
     private final EtudiantRepository etudiantRepository;
 
 
-
+    @Override
+    public void updateDemandeStage(Long id) {
+        Etudiant etudiant = etudiantRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Etudiant not found"));
+        // Mettez à jour l'état de la demande de stage de l'étudiant
+        etudiant.setDemandeStageEffectuee(true); // Par exemple
+        etudiantRepository.save(etudiant);
+    }
 
     @Override
     public Etudiant createEtudiant(Etudiant etudiant) {
