@@ -23,6 +23,7 @@ public class Entreprise implements Serializable {
     String email;
     String nom;
     String adresse;
+
     @OneToMany(mappedBy = "entreprise")
     Set<DocStage> docStages;
     @JsonIgnore
