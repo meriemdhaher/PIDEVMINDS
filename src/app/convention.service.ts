@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ConventionService {
 
+
   private apiUrl = 'http://localhost:8089/api/convention-form';
 
   constructor(private http: HttpClient) { }
@@ -15,4 +16,20 @@ export class ConventionService {
   submitConventionForm(conventionForm: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/submit`, conventionForm);
   }
+ // Cette méthode doit récupérer le formulaire de convention pour un étudiant donné
+ getConventionForm(cin: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/generate/${cin}`);
 }
+
+
+// Ces méthodes doivent valider ou refuser le formulaire de convention
+validerConvention(conventionId: number): Observable<any> {
+  return this.http.put<any>(`${this.apiUrl}/validate/${conventionId}`, null);
+}
+
+refuserConvention(conventionId: number): Observable<any> {
+  return this.http.put<any>(`${this.apiUrl}/reject/${conventionId}`, null);
+}
+
+}
+

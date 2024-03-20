@@ -1,60 +1,62 @@
-
+<!-- EtudiantListComponent HTML -->
 <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title" style="font-size: xx-large;">
-            list etudiant
-          </h3> &nbsp;
-          <a routerLink="/etudiant-new"><button class="btn btn-success pull-right" >Add New Etudiant</button></a>
-  
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <table id="example2" class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Cin</th>
-                <th>Numero</th>
-                <th>Email</th>
-                <th>Evenement</th>
-                <th>docStage</th>
-                <th>Candidature</th>
-                <th>Messagerie</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let etudiant of etudiants">
-                <td>{{etudiant.id}}</td>
-                <td>{{etudiant.nom}}</td>
-                <td>{{ etudiant.prenom }}</td>
-                <td>{{ etudiant.cin }}</td>
-                <td>{{ etudiant.numero }}</td>
-                <td>{{ etudiant.email }}</td>
-                <td>{{ etudiant.evenement }}</td>
-                <td>{{ etudiant.docStage }}</td>
-                <td>{{ etudiant.candidatures }}</td>
-                <td>{{ etudiant.messageries }}</td>
-                <td>
-                  <a routerLink="/etudiant-update/{{ etudiant.id }}">
-                    <button class="btn btn-info">Update Etudiant</button>
-                  </a>
-                  <a (click)="deleteEtudiant(etudiant.id)">
-                    <button class="btn btn-danger">Delete Etudiant</button>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.card-body -->
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title" style="font-size: xx-large;">
+          Liste des étudiants
+        </h3>
+        <a routerLink="/etudiant-new"><button class="btn btn-success pull-right">Ajouter un nouvel étudiant</button></a>
       </div>
-      <!-- /.card -->
+      <div class="card-body">
+        <table id="example2" class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>CIN</th>
+              <th>Numéro</th>
+              <th>Email</th>
+              <th>Demande de stage</th>
+              <th>Convention</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let etudiant of etudiants">
+              <td>{{ etudiant.id }}</td>
+              <td>{{ etudiant.nom }}</td>
+              <td>{{ etudiant.prenom }}</td>
+              <td>{{ etudiant.cin }}</td>
+              <td>{{ etudiant.numero }}</td>
+              <td>{{ etudiant.email }}</td>
+              <td>
+                <!-- Affichage dynamique de l'état de la demande de stage -->
+                <span *ngIf="etudiant.demandeStageEffectuee; else demandeStageEnAttente" class="text-success">Effectuée</span>
+                <ng-template #demandeStageEnAttente>
+                  <span class="text-danger">En attente</span>
+                  <!-- Affichage du message lorsque la demande de stage est en attente -->
+                  <span *ngIf="!etudiant.demandeStageEffectuee">La demande de stage n'est pas Effectuée</span>
+                </ng-template>
+              </td>
+             
+              <td>
+                <button>
+                <a [routerLink]="['/convention-form', etudiant.cin]">Afficher le formulaire de convention</a>
+              </button>
+              </td>
+              <td> <!-- Notez qu'il manque cette balise ouvrante -->
+                <a routerLink="/etudiant-update/{{ etudiant.id }}">
+                  <button class="btn btn-info">Modifier l'étudiant</button>
+                </a>
+                <a (click)="deleteEtudiant(etudiant.id)">
+                  <button class="btn btn-danger">Supprimer l'étudiant</button>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <!-- /.col -->
   </div>
-  
+</div>

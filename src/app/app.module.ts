@@ -5,7 +5,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
-import { HttpClientModule } from '@angular/common/http';  
+import { HttpClientModule } from '@angular/common/http'; 
+import { MatStepperModule } from '@angular/material/stepper'; 
+import { MatIconModule } from '@angular/material/icon';
 // import {DataTablesModule} from 'angular-datatables'; 
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
@@ -25,6 +27,7 @@ import { DemandeStageComponent } from './demande-stage/demande-stage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConventionComponent } from './convention/convention.component';
 import { ConfirmationdialogComponent } from './confirmationdialog/confirmationdialog.component';
+import { ConventionFormComponent } from './convention-form/convention-form.component';
 
 
 @NgModule({
@@ -47,6 +50,8 @@ import { ConfirmationdialogComponent } from './confirmationdialog/confirmationdi
     DemandeStageComponent,
     ConventionComponent,
     ConfirmationdialogComponent,
+    ConventionFormComponent,
+    
     
   ],
   imports: [
@@ -56,7 +61,9 @@ import { ConfirmationdialogComponent } from './confirmationdialog/confirmationdi
     FormsModule,  
     ReactiveFormsModule,  
     HttpClientModule, BrowserAnimationsModule, 
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatStepperModule,
+    MatIconModule
     
     // DataTablesModule   
     

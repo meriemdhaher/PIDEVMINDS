@@ -11,7 +11,7 @@ import { EtudiantNewComponent } from './pages/etudiant/etudiant-new/etudiant-new
 import { EtudiantUpdateComponent } from './pages/etudiant/etudiant-update/etudiant-update.component';
 import { TimelineComponent } from './timeline-component/timeline-component.component';
 import { ConventionComponent } from './convention/convention.component';
-
+import { ConventionFormComponent } from './convention-form/convention-form.component';
 const routes: Routes = [
   { path:'dashboard', component: DashboardComponent },
   {path:'entreprise', component:EntrepriseComponent},
@@ -24,7 +24,9 @@ const routes: Routes = [
   { path:'etudiant-new', component: EtudiantNewComponent },
   { path:'etudiant-update/:id', component: EtudiantUpdateComponent },
   { path: 'timeline', component: TimelineComponent },
-  {path:'convention', component: ConventionComponent}
+  {path:'convention', component: ConventionComponent},
+  {path:'convention-form', component:ConventionFormComponent},
+  { path: 'convention-form/:cin', component: ConventionFormComponent }
 ];
 
 @NgModule({

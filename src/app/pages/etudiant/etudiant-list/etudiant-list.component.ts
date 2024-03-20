@@ -5,6 +5,10 @@ import { Etudiant } from 'src/app/etudiant';
 import { EtudiantService } from 'src/app/etudiant.service';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { NotificationService } from 'src/app/notification.service';
+import { ConventionService } from 'src/app/convention.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConventionComponent } from 'src/app/convention/convention.component';
+import { ConventionFormComponent } from 'src/app/convention-form/convention-form.component';
 
 @Component({
   selector: 'app-etudiant-list',
@@ -15,13 +19,16 @@ export class EtudiantListComponent implements OnInit {
   etudiants: Etudiant[]; // Utilisez un tableau pour stocker les données
 
   private destroy$: Subject<void> = new Subject<void>();
+  dialogService: any;
+  
 
   constructor(
     private etudiantService: EtudiantService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private conventionService: ConventionService,
+    private dialog: MatDialog,
   ) {}
-  
 
   ngOnInit() {
     this.reloadData();
@@ -61,7 +68,25 @@ export class EtudiantListComponent implements OnInit {
       }
     );
   }
-  showConventionNotification(nomEtudiant: string): void {
-    this.notificationService.showSuccessNotification(`Le formulaire de convention a été généré par ${nomEtudiant}`);
+
+  // Méthode pour afficher la notification de demande de stage
+  showDemandeStageNotification(nomEtudiant: string): void {
+    this.notificationService.showSuccessNotification(`La demande de stage de ${nomEtudiant} a été effectuée`);
   }
+  showConventionForm(cin: number): void {
+    this.conventionService.getConventionForm(cin).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.notificationService.showSuccessNotification(`L'étudiant a fourni le formulaire de convention avec succès.`);
+        // Rediriger vers la page du formulaire de convention
+        this.router.navigate(['/convention-form', cin]);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du formulaire de convention :', error);
+      }
+    );
+  }
+  
 }
+
+

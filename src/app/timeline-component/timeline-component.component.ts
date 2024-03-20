@@ -1,8 +1,8 @@
-// timeline-component.component.ts
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DemandeStageComponent } from '../demande-stage/demande-stage.component';
 import { ConventionComponent } from '../convention/convention.component';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-timeline',
@@ -10,19 +10,12 @@ import { ConventionComponent } from '../convention/convention.component';
   styleUrls: ['./timeline-component.component.css']
 })
 export class TimelineComponent {
-  events = [
-    { title: 'Demande de Stage', closed: false },
-    { title: 'Convention', closed: false },
-  ];
+  demandeStageCompleted: boolean = true;
+  conventionCompleted: boolean = false;
 
-  constructor(private dialog: MatDialog) {}
-
-  openPopup(event: any) {
-    if (event.title === 'Demande de Stage') {
-      this.openDemandeStagePopup();
-    } else if (event.title === 'Convention') {
-      this.openConventionPopup();
-    }
+  constructor(private dialog: MatDialog) {
+    // Initialiser les étapes à la demande de stage
+    this.openDemandeStagePopup();
   }
 
   openDemandeStagePopup() {
@@ -32,30 +25,42 @@ export class TimelineComponent {
 
     dialogRef.afterClosed().subscribe(() => {
       console.log('Demande de Stage fermée');
-      this.closeEvent('Demande de Stage');
+      // Mettre à jour l'état de la demande de stage une fois fermée
+      this.demandeStageCompleted = true;
     });
   }
 
   openConventionPopup() {
     const dialogRef = this.dialog.open(ConventionComponent, {
       width: '500px',
-      data: {}
     });
 
     dialogRef.afterClosed().subscribe(() => {
       console.log('Convention fermée');
-      this.closeEvent('Convention');
+      // Mettre à jour l'état de la convention une fois fermée
+      this.conventionCompleted = true;
     });
   }
 
-  closeEvent(title: string) {
-    const event = this.events.find(e => e.title === title);
-    if (event) {
-      event.closed = true;
+  onStepSelectionChange(event: StepperSelectionEvent) {
+    const selectedIndex = event.selectedIndex;
+
+    if (selectedIndex === 0) {
+      if (!this.demandeStageCompleted) {
+        this.openDemandeStagePopup();
+      }
+    } else if (selectedIndex === 1) {
+      if (!this.conventionCompleted) {
+        this.openConventionPopup();
+      }
     }
   }
 
-  isClosed(event: any): boolean {
-    return event.closed;
+  isStageDemandeCompleted(): boolean {
+    return this.demandeStageCompleted;
+  }
+
+  isConventionCompleted(): boolean {
+    return this.conventionCompleted;
   }
 }

@@ -19,7 +19,7 @@ export class EtudiantNewComponent implements OnInit {
 
   ngOnInit(): void {
     this.submitted = false;
-    this.etudiant = new Etudiant();
+    this.etudiant = new Etudiant(0, 0, '', '', 0, '', false, []); 
   }
 
   save() {

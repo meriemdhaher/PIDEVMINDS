@@ -39,4 +39,9 @@ export class EtudiantService {
   updateEtudiant(id: number, etudiant: Etudiant): Observable<Etudiant> {
     return this.http.put<Etudiant>(`${this.baseUrl}/update/${id}`, etudiant);
   }
+  updateDemandeStage(id: number): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/updateDemandeStage/${id}`, null);
+  }
+
+  
 }
