@@ -49,6 +49,7 @@ public class ConventionController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing convention form: " + e.getMessage());
         }
     }
+<<<<<<< HEAD
     @GetMapping("/generate/{cin}")
     public ResponseEntity<?> getConventionForm(@PathVariable Integer cin) {
         try {
@@ -98,5 +99,7 @@ public class ConventionController {
     }
 
 
+=======
+>>>>>>> 9e30c7eaae08c546e1d35992b01f28ff91c5e3fe
 
 }
