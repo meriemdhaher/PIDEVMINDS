@@ -49,6 +49,7 @@ public class ConventionController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing convention form: " + e.getMessage());
         }
     }
+
     @GetMapping("/generate/{cin}")
     public ResponseEntity<?> getConventionForm(@PathVariable Integer cin) {
         try {
@@ -75,28 +76,28 @@ public class ConventionController {
         }
     }
 
-    @PutMapping("/validate/{id}")
-    public ResponseEntity<?> validerConvention(@PathVariable Long id) {
+    @PutMapping("/validate/{cin}")
+    public ResponseEntity<?> validerConvention(@PathVariable Integer cin) {
         try {
             // Logique pour valider la convention
-            return ResponseEntity.ok("Convention validée avec succès.");
+            conventionFormService.validerConvention(cin);
+            return ResponseEntity.noContent().build(); // Retourner un statut 204 No Content
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de la validation de la convention : " + e.getMessage());
         }
     }
 
-    @PutMapping("/reject/{id}")
-    public ResponseEntity<?> refuserConvention(@PathVariable Long id) {
+    @PutMapping("/reject/{cin}")
+    public ResponseEntity<?> refuserConvention(@PathVariable Integer cin) {
         try {
             // Logique pour refuser la convention
-            return ResponseEntity.ok("Convention refusée avec succès.");
+            conventionFormService.refuserConvention(cin);
+            return ResponseEntity.noContent().build(); // Retourner un statut 204 No Content
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors du refus de la convention : " + e.getMessage());
         }
     }
-
-
 
 }

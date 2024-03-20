@@ -33,6 +33,8 @@ public class Etudiant implements Serializable {
 
     @Column(name = "periode_stage")
     private String periodeStage;
+    private boolean valide;
+    private boolean refuse;
 
 
     @ManyToMany

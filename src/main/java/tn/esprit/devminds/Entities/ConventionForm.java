@@ -1,26 +1,14 @@
 package tn.esprit.devminds.Entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-<<<<<<< HEAD
 import jakarta.persistence.*;
-=======
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
->>>>>>> 9e30c7eaae08c546e1d35992b01f28ff91c5e3fe
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-<<<<<<< HEAD
-import java.text.Normalizer;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDate;
 
-=======
->>>>>>> 9e30c7eaae08c546e1d35992b01f28ff91c5e3fe
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,16 +17,26 @@ import java.util.Set;
 public class ConventionForm {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;  // Vous devriez avoir un champ ID pour les entités JPA
+    private Long id;
     @JsonProperty("nomEntreprise")
     private String nomEntreprise;
-    private String periodeStage;
+    private LocalDate startDate; // Utilisation de LocalDate pour la date
+    private LocalDate endDate;   // Utilisation de LocalDate pour la date
     private String nom;
     private String prenom;
     private Integer cin;
+    private boolean refuse;
+    @Column(name = "valide", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean valide = false;
+    private String periodeStage;
 
-<<<<<<< HEAD
+    public String getPeriodeStage() {
+        return periodeStage;
+    }
 
-=======
->>>>>>> 9e30c7eaae08c546e1d35992b01f28ff91c5e3fe
+    public void setPeriodeStage(String periodeStage) {
+        this.periodeStage = periodeStage;
+    }
+
 }
+

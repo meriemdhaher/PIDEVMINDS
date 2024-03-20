@@ -49,12 +49,27 @@ public class ConventionService {
         etudiant.setNomEntreprise(conventionForm.getNomEntreprise());
         etudiant.setPeriodeStage(conventionForm.getPeriodeStage());
 
-        // Logique de sauvegarde dans la base de données
+        conventionForm.setRefuse(false); // définir la valeur par défaut ou celle que vous voulez
+
         try {
             conventionFormRepository.save(conventionForm);
         } catch (Exception e) {
             throw new RuntimeException("Erreur lors de l'enregistrement du formulaire de convention dans la base de données.", e);
         }
     }
+    public void validerConvention(Integer cin) {
+        Etudiant etudiant = etudiantService.getEtudiantByCin(cin);
+        if (etudiant != null) {
+            etudiant.setValide(true);
+            etudiantService.updateEtudiant(etudiant);
+        }
+    }
 
+    public void refuserConvention(Integer cin) {
+        Etudiant etudiant = etudiantService.getEtudiantByCin(cin);
+        if (etudiant != null) {
+            etudiant.setRefuse(true);
+            etudiantService.updateEtudiant(etudiant);
+        }
+    }
 }
