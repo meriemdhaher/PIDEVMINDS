@@ -27,7 +27,6 @@ public class Etudiant implements Serializable {
     String prenom;
     int numero;
     String email;
-<<<<<<< HEAD
     boolean demandeStageEffectuee;
     @Column(name = "nom_entreprise")
     private String nomEntreprise;
@@ -35,8 +34,6 @@ public class Etudiant implements Serializable {
     @Column(name = "periode_stage")
     private String periodeStage;
 
-=======
->>>>>>> 9e30c7eaae08c546e1d35992b01f28ff91c5e3fe
 
     @ManyToMany
     Set<Evenement> evenement;
