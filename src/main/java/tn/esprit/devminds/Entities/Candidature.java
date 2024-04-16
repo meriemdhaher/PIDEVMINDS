@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 @Getter
@@ -19,12 +20,36 @@ public class Candidature implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long idCandidature;
+    String image;
     String cin;
     String nom;
-    String  penom;
-    boolean disponibilite;
-    String email;
+    String  prenom;
+    @Enumerated(EnumType.STRING)
+    Status status;
+    private String email;
+    private String confirmEmail;
+    private String address;
+    private String numTel;
+
+    private String titre;
+    private String societe;
+    private String experienceDescription;
+    @Temporal(TemporalType.DATE)
+    private Date experienceDu;
+    @Temporal(TemporalType.DATE)
+    private Date experienceAu;
+
+    private String etablissement;
+    private String specialisation;
+    private String niveauEtude;
+    private String competence;
+    @Temporal(TemporalType.DATE)
+    private Date formationDu;
+    @Temporal(TemporalType.DATE)
+    private Date formationAu;
+
     @JsonIgnore
     @ManyToOne
     Etudiant etudiant;
+
 }

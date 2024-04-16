@@ -10,4 +10,6 @@ public interface IEntretient {
     public List<Entretien> getAllEntretien();
     public Entretien getEntreById(Long idEntretien);
     public void deleteEntretien(Long idEntretien);
+    Entretien affecterEntretienToCandidature(Long idCandidature, Entretien entretien) ;
+    public void sendEmail(Entretien entretien);
 }

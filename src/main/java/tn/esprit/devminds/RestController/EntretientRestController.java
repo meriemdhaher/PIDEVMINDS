@@ -9,6 +9,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class EntretientRestController {
     private IEntretient iEntretient;
     @PostMapping("/addEntre")
@@ -30,5 +31,13 @@ public class EntretientRestController {
     @DeleteMapping("/deleteEntre/{idEntretien}")
     public void deleteEntretien(@PathVariable Long idEntretien){
         iEntretient.deleteEntretien(idEntretien);
+    }
+    @PostMapping("/affEntretien/{idCandidature}")
+    public Entretien affecterEntretienToCandidature(@PathVariable Long idCandidature,@RequestBody Entretien entretien){
+        return iEntretient.affecterEntretienToCandidature(idCandidature,entretien);
+    }
+    @PostMapping("/sendEmail")
+    public void sendEmail(@RequestBody Entretien entretien){
+      iEntretient.sendEmail(entretien);
     }
 }

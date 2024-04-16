@@ -20,12 +20,15 @@ public class Entretien implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long idEntretien;
     @Temporal(TemporalType.DATE)
-    Date dateEntretienR;
-    @Temporal(TemporalType.DATE)
-    Date dateEntretienT;
+    Date dateEntretien;
+    String heure;
+    String lien;
     @JsonIgnore
     @ManyToOne
     Entreprise entreprise;
+    @JsonIgnore
+    @ManyToOne
+    Candidature candidature;
 
 
 }

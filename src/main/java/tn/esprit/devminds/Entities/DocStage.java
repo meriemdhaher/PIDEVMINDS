@@ -21,6 +21,7 @@ public class DocStage implements Serializable {
     Long idDoc;
     String titre;
     @Enumerated(EnumType.STRING)
+    Status statu;
     TypeDoc doc;
     boolean validation;
     @Temporal(TemporalType.DATE)
