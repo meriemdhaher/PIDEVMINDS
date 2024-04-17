@@ -44,6 +44,8 @@
                 <button>
                 <a [routerLink]="['/convention-form', etudiant.cin]">Afficher le formulaire de convention</a>
               </button>
+              <span *ngIf="etudiant.conventionValidee" class="text-success">Validée</span>
+              <span *ngIf="!etudiant.conventionValidee" class="text-danger">Non validée</span>
               </td>
               <td> <!-- Notez qu'il manque cette balise ouvrante -->
                 <a routerLink="/etudiant-update/{{ etudiant.id }}">

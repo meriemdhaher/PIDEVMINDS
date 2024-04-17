@@ -23,12 +23,12 @@ export class ConventionService {
 
 
 // Ces méthodes doivent valider ou refuser le formulaire de convention
-validerConvention(conventionId: number): Observable<any> {
-  return this.http.put<any>(`${this.apiUrl}/validate/${conventionId}`, null);
+validerConvention(cin: number): Observable<any> {
+  return this.http.put<any>(`${this.apiUrl}/validate/${cin}`, null); // Passer null comme corps
 }
 
-refuserConvention(conventionId: number): Observable<any> {
-  return this.http.put<any>(`${this.apiUrl}/reject/${conventionId}`, null);
+rejectConvention(cin: number): Observable<any> {
+  return this.http.put<any>(`${this.apiUrl}/reject/${cin}`, null); // Passer null comme corps
 }
 
 }

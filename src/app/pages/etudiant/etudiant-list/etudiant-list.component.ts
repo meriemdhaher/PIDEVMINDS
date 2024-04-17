@@ -28,6 +28,7 @@ export class EtudiantListComponent implements OnInit {
     private notificationService: NotificationService,
     private conventionService: ConventionService,
     private dialog: MatDialog,
+
   ) {}
 
   ngOnInit() {
@@ -86,6 +87,7 @@ export class EtudiantListComponent implements OnInit {
       }
     );
   }
+  
   
 }
 

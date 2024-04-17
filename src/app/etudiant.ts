@@ -7,7 +7,7 @@ export class Etudiant {
   numero: number;
   email: string;
  
-
+  conventionValidee: boolean;
   demandeStageEffectuee: boolean; // Nouveau champ pour indiquer si la demande de stage a été effectuée
   convention:any[];
   constructor(
@@ -20,6 +20,7 @@ export class Etudiant {
 
     demandeStageEffectuee: boolean = false, // Initialisez-le à false par défaut
     convention:any,
+    conventionValidee: boolean = false,
     ) {
     this.id = id;
     this.cin = cin;
@@ -30,5 +31,6 @@ export class Etudiant {
 
     this.demandeStageEffectuee = demandeStageEffectuee; // Affectez-le au constructeur
     this.convention=convention;
+    this.conventionValidee = conventionValidee;
   }
 }

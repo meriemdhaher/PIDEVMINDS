@@ -1,9 +1,7 @@
 // demande-stage.component.ts
-
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
-import { EtudiantService } from '../etudiant.service';
 
 @Component({
   selector: 'app-demande-stage',
@@ -12,7 +10,10 @@ import { EtudiantService } from '../etudiant.service';
 })
 export class DemandeStageComponent {
   cin: number = 0;
-  constructor(private dialog: MatDialog, private httpClient: HttpClient, private etudiantService: EtudiantService) { }
+
+  @Output() completed: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  constructor(private dialogRef: MatDialogRef<DemandeStageComponent>, private httpClient: HttpClient) { }
 
   submitDemandeStage() {
     // Envoi du CIN au serveur pour générer le PDF
@@ -21,22 +22,23 @@ export class DemandeStageComponent {
       response => {
         console.log('Response received from server:', response);
   
+        // Crée un objet blob avec la réponse
+        const blob = new Blob([response], { type: 'application/pdf' });
 
-      // Crée un objet blob avec la réponse
-      const blob = new Blob([response], { type: 'application/pdf' });
+        // Crée un objet URL pour le blob, puis ouvre une nouvelle fenêtre
+        const fileUrl = URL.createObjectURL(blob);
+        window.open(fileUrl);
 
-      // Crée un objet URL pour le blob, puis ouvre une nouvelle fenêtre
-      const fileUrl = URL.createObjectURL(blob);
-      window.open(fileUrl);
-      
+        // Émettre un événement pour indiquer que la demande de stage est complétée
+        this.completed.emit(true);
 
-      // Une fois le PDF généré, fermez le popup
-      this.dialog.closeAll();
-    },
-    error => {
-      // Gérez les erreurs ici
-      console.error('Error generating PDF', error);
-    }
-  );
+        // Fermer le popup de demande de stage
+        this.dialogRef.close({ completed: true });
+      },
+      error => {
+        // Gérez les erreurs ici
+        console.error('Error generating PDF', error);
+      }
+    );
   }
 }

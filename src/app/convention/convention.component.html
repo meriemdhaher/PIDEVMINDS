@@ -1,4 +1,3 @@
-<!-- convention-form.component.html -->
 <div>
   <h2>Formulaire de Convention</h2>
   <form (submit)="submitForm()">
@@ -9,8 +8,16 @@
     <label for="nomEntreprise">Nom de l'Entreprise:</label>
     <input type="text" id="nomEntreprise" [(ngModel)]="nomEntreprise" name="nomEntreprise" required>
 
-    <label for="periodeStage">Période de Stage:</label>
-    <input type="date" id="periodeStage" [(ngModel)]="periodeStage" name="periodeStage" required>
+    <!-- Champs pour la période de stage -->
+    <div>
+      <label for="startDate">Date de début:</label>
+      <input type="date" id="startDate" [(ngModel)]="startDate" name="startDate" required>
+    </div>
+
+    <div>
+      <label for="endDate">Date de fin:</label>
+      <input type="date" id="endDate" [(ngModel)]="endDate" name="endDate" required>
+    </div>
 
     <button type="submit">Soumettre</button>
   </form>
@@ -22,7 +29,7 @@
     <p><strong>Nom:</strong> {{ confirmationDetails.nom }}</p>
     <p><strong>Prénom:</strong> {{ confirmationDetails.prenom }}</p>
     <p><strong>Nom de l'Entreprise:</strong> {{ confirmationDetails.nomEntreprise }}</p>
-    <p><strong>Période de Stage:</strong> {{ confirmationDetails.periodeStage }}</p>
+    <p><strong>Période de Stage:</strong> {{ periodeComplete }}</p> 
     <!-- Ajoutez d'autres champs si nécessaire -->
   </div>
 </div>

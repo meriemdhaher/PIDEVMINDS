@@ -28,6 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConventionComponent } from './convention/convention.component';
 import { ConfirmationdialogComponent } from './confirmationdialog/confirmationdialog.component';
 import { ConventionFormComponent } from './convention-form/convention-form.component';
+import { JournalStageComponent } from './journal-stage/journal-stage.component';
+
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { ConventionFormComponent } from './convention-form/convention-form.compo
     ConventionComponent,
     ConfirmationdialogComponent,
     ConventionFormComponent,
+    JournalStageComponent
+   
     
     
   ],
